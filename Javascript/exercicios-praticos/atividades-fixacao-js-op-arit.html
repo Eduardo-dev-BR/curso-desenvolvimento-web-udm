@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores Aritiméticos</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: #ccc;
+        }
+
+        body {
+            z-index: -1;
+            background-color: #323232;
+        }
+
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .imc-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 200px;
+            height: 350px;
+            padding: 50px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            transition: 1s;
+        }
+
+        label {
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        input {
+            border: none;
+            background: #ccc;
+            color: #474747;
+            font-weight: bolder;
+            height: 30px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input:focus {
+            outline: none;
+            border: 5px solid rgb(65, 163, 255);
+        }
+
+        button {
+            width: 150px;
+            height: 50px;
+            margin-top: 30px;
+            background: rgb(185, 3, 30);
+            color: #ccc;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.8rem;
+            border: none;
+            border-radius: 30px;
+        }
+
+        button:focus {
+            outline: none;
+        }
+        
+        button:hover{
+            background: rgb(231, 13, 46);
+        }
+
+        button:active {
+            transform: translate(1px, 1px); 
+        }
+
+        #erro {
+            display: none;
+            font-size: 13px;
+            position: absolute;
+            bottom: 5%;
+            color: rgb(231, 13, 46);   
+        }
+
+        .result {
+            position: relative;
+            overflow: hidden;
+            width: 400px;
+            height: 210px;
+        }
+
+        #correto {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(130%);
+            height: 210px;
+            color: #474747;
+            background: rgb(200, 200, 200);
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .on{
+            transition: 1s;
+            transform: translateX(0%) !important;
+        }
+
+        #correto strong{
+            font-size: 25px;
+        }
+
+        .status{
+            font-size: 2rem;
+            font-weight: bolder;
+        }
+
+        @media (max-width: 768px){
+            h2{
+                padding: 15px;
+                margin: 0;
+            }
+            .content{
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .imc-wrapper{
+                padding: 30px;
+                height: 300px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Cálculo de IMC</h2>
+    <section class="content">    
+        <div class="imc-wrapper">
+            <label>Digite o seu nome</label>
+            <input type="text" id="nome" placeholder="Ex: José"/>
+            <label>Qual é a sua altura</label>
+            <input type="text" id="altura" placeholder="Em centímetros"/>
+            <label>Quanto você pesa?</label>
+            <input type="text" id="peso" placeholder="Kg"/>
+            <button type="button" id="send" onclick="calcular()">Calcular</button>
+            <p id="erro">* Erro! Digite os valores corretamente!</p>
+        </div><!--imc wrapper-->
+        <div class="result">
+            <div id="correto"></div>
+        </div>
+    </section>
+    <script>
+
+        function calcular(){
+            let nome = document.querySelector('#nome').value
+            let altura = document.querySelector('#altura').value
+            altura = Number(altura)/100
+            let peso = document.querySelector('#peso').value
+            peso = Number(peso)
+            //Fórmula: M = peso (quilos) ÷ altura²
+            let quad = altura * altura
+            let m = peso / quad
+            m = m.toFixed(2)
+            
+            if (altura && peso > 0 || nome !== ""){
+                //Mensagens
+                if(m <= 16){
+                    var msg = 'Baixo peso muito grave'
+                }else if(m < 16.99){
+                    var msg = 'Baixo peso grave'
+                }else if(m < 18.49){
+                    var msg = 'Baixo peso'
+                }else if(m < 24,99){
+                    var msg = 'Normal'
+                }else if(m < 29,99){
+                    var msg = 'Sobrepeso'
+                }else if(m < 34,99){
+                    var msg = 'Obesidade' 
+                }else if(m > 40){
+                    var msg = 'Obesidade Mórbida'
+                }else{
+                    document.querySelector('.imc-wrapper').style.border = '3px solid red'
+                    errorMessage()
+                    function errorMessage (){
+                    document.querySelector('#erro').style.display = "block"
+                    }
+                }
+
+                //Exibir no campo resultado o imc e a condição
+                let res = document.querySelector('#correto') 
+                res.className = 'on'
+                res.innerHTML = `
+                <p>Olá <b>${nome}</b>, o seu imc é de: <strong>${m}</strong></p>
+                <div class="status">${msg}</div>
+                `
+                } else {
+                    //Exibir mensagem de erro
+                    document.querySelector('.imc-wrapper').style.border = '3px solid red'
+                    errorMessage()
+                    function errorMessage (){
+                    document.querySelector('#erro').style.display = "block"
+                     }
+                }
+            
+                let a = document.querySelector('#nome')
+                a.addEventListener('click',clicar)
+                let b = document.querySelector('#altura')
+                b.addEventListener('click',clicar)
+                let c = document.querySelector('#peso')
+                c.addEventListener('click',clicar)
+                                
+                function clicar() {
+                    document.querySelector('.imc-wrapper').style.border = '3px solid #ccc'
+                    document.querySelector('#erro').style.display = "none"
+                }
+        }
+        
+
+
+    </script>
+</body>
+</html>
