@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções</title>
+</head>
+<body>
+    <script>
+
+        //void -- Não retornam um valor
+        //return 
+
+        /*var largura = prompt('Digite a largura do terreno em metros')
+        var comprimento = prompt('Digite a altura do terreno em metros')
+
+        var area = calcularAreaTerreno(largura , comprimento)
+
+        document.write('O terreno possui '+area+' metros quadrados')
+
+        function calcularAreaTerreno(lagura,comprimento){
+            //lógica
+            var area = largura * comprimento
+            return area
+        }*/
+
+        //--parametros variaveis--
+
+        // function soma(a,b,c){
+        //     return a + b + c
+        // }
+
+        // console.log(soma(7,7))
+        // console.log(soma(7,7,9,15))//js desconsidera os parametros adicionais
+
+        //--Escopo de Variáveis - Global, Bloco e Funçao--
+        // var nome = 'Eduardo'
+
+        // if(true){
+        //     var sobrenome = ' Bertozi' //É passada para o escopo global
+        //     document.write(nome)
+        //     document.write(sobrenome)
+        // }
+
+        // function verNome() {
+        //     var terceiroNome = 'Junior' //É exibida somente chamando a função
+        //     document.write(nome)
+        //     document.write(terceiroNome)
+        // }
+
+        // verNome()
+
+        //-- Funções Anonimas -- 
+        // var exibirSaudacao = function(nome) {
+        //     document.write('Olá '+nome+', tudo bem?')
+        // }
+
+        // exibirSaudacao('Eduardo')
+
+        //-- Funções de Callback --
+        // function exibirArtigo (id, callbackSucesso, callbackErro) {
+        //     //Lógica para recuperar o id via requisição http
+        //     if ( true ) {
+        //         callbackSucesso('Funções de callback em JS', 'Funções de callback são muito úteis para usar')
+        //     } else {
+        //         callbackErro(' Erro ao recuperar dados')
+        //     }
+        // }
+        //     var callbackSucesso = function (titulo,descricao){
+        //         document.write('<h1>' + titulo + '</h2>')
+        //         document.write('<hr />')
+        //         document.write('<p>' + descricao + '</p>')
+        //     }
+
+        //     var callbackErro = function (erro){
+        //         document.write('<p><b>Erro:</b>' + erro + '</p>')
+        //     }
+
+        //     exibirArtigo(1, callbackSucesso, callbackErro)
+
+        //-- Funções nativas para manipular strings -- 
+        // var nome = 'Eduardo Bertozi Junior'
+        // document.write(nome.length) //verifica com base no número de caracteres, iniciando por 0
+       
+        // document.write('<br/>')
+        // document.write(nome.charAt(3)) //é uma função que exibe o caractere indicado através do parâmetro numérico
+       
+        // document.write('<br/>')
+        // document.write(nome.indexOf('r')) //Indica qual é a primeira ocorrência do caractere na string, e quando não houver ocorrência ele retornará um valor negativo
+       
+        // document.write('<br />')
+        // document.write(nome.replace('Bertozi','Silva')) //Substitui a ocorrencia por outra
+       
+        // document.write('<br />')
+        // document.write(nome.substr(8,8)) //A partir da posição inicial indicada, ele recorta um grupo de caracteres com a quantidade indicada
+            
+        // document.write('<br />')
+        // document.write(nome.toLowerCase()) //Imprime todos os caracteres com caixa minúscula
+        
+        // document.write('<br />')
+        // document.write(nome.UpperCase()) //Imprime todos os caracteres com caixa maiúscula
+            
+        // document.write('<br />')
+        // document.write('-' + nome.trim() + '-') //Remove os espaços em branco (laterais à string) 
+
+            
+        //-- Funções nativas para operações matemáticas --
+
+        // var x = Math.ceil(10.380) //arredonda para cima
+        // document.write(x)
+
+        // document.write('<br />')
+
+        // var x = Math.floor(10.380) //arredonda para baixo
+        // document.write(x)
+
+        // document.write('<br />')
+        
+        // var x = Math.round(10.580) //Considera o peso da fração e decide de forma automatica o arredondamento para cima ou para baixo
+        // document.write(x)
+
+        // document.write('<br />')
+        
+        // var x = Math.random(10.0) //Gera um número aleatório
+        // document.write(x)
+
+        //-- Funções nativas para manipular datas --
+        
+        // var data = new Date()
+        // // document.write(data.getDate()+ '/' +'0'+(data.getMonth()+1) + '/' + data.getFullYear())
+        // //23/02/2021
+        // //Adicionar / remover dias
+        // document.write(data.toString())
+        // data.setDate(data.getDate() + 38)
+        // document.write('<hr />')
+        // document.write(data.toString())
+        // document.write('<br /><br /><hr />')
+        
+        // //Adicionar / remover meses
+        // document.write(data.toString())
+        // data.setMonth(data.getMonth() +1)
+        // document.write('<hr />')
+        // document.write(data.toString())
+        // document.write('<br /><br /><hr />')
+        
+        // //Adicionar / remover meses
+        // document.write(data.toString())
+        // data.setFullYear(data.getFullYear() +1)
+        // document.write('<hr />')
+        // document.write(data.toString())
+        // document.write('<br><hr />')
+
+        //Calcular datas
+        //15/01/2017
+        // var data1 = new Date(2017,0,15)
+        // //23/02/2017
+        // var data2 = new Date(2017,1,23)
+        
+        // document.write(data1.toString())
+        // document.write('<hr />')
+        // document.write(data2.toString())
+        
+        // document.write('<br /><br /><hr />')
+        // //converter em valores calculaveis
+        // document.write(data1.getTime())
+        // document.write('<hr />')
+        // document.write(data2.getTime())
+
+        // // 1 de janeiro de 1970
+
+        // //encontrar a quantidade de millisegundos entre data1 e data2
+        // document.write('<br /><br /><hr />')
+        // var ms_entre_datas = Math.abs(data1.getTime() - data2.getTime())
+        // document.write(ms_entre_datas) //Math.abs -> converte para o valor absoluto
+
+        // // 1 dia - 24hrs,  1 hr - 60 min, 1min - 60 seg, 1seg - 1000ms
+        // //quantos ms tem em um dia
+        // var ms_por_dia = (1*24*60*60*1000)
+        // document.write(' um dia tem: ' + ms_por_dia + ' millisegundos') 
+        
+        // document.write('<br /><br /><hr />')
+        // document.write('A diferença entre data1 e data2 é de: '+Math.ceil(ms_entre_datas / ms_por_dia) + ' dias')
+    </script>
+</body>
+</html>

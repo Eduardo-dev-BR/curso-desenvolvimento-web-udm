@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculos Aritiméticos</title>
+</head>
+<body>
+    <script>
+        var n1 = prompt('Digite um número: ')
+        n1 = Number(n1)
+        var op = prompt('somar ou subtrair: ')
+        var n2 = prompt('Digite outro número: ')
+        n2 = Number(n2)
+
+        var result = calculoAritimetico(n1,n2,op)
+        
+        alert('O resultado é: ' + result)
+
+        function calculoAritimetico(n1,n2,op){
+            if (op == 'somar'){
+                op = n1+n2
+            } else if (op == 'subtrair'){
+                op = n1-n2
+            } else {
+                alert('Erro! Tente com valores válidos')
+            }
+            return op
+        }
+
+    </script>
+</body>
+</html>
